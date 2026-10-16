@@ -1,6 +1,6 @@
 # DesVape — site oficial
 
-Landing page estática, páginas legais e suporte. HTML, CSS e JavaScript nativos, sem dependências, backend, rastreamento, fontes externas ou etapa de build.
+Landing page estática, páginas legais e suporte. HTML, CSS e JavaScript nativos, sem backend, rastreamento, fontes externas ou etapa de build. O mascote reutiliza o visualizador Three.js fornecido, carregado apenas sob demanda.
 
 ## Páginas públicas
 
@@ -15,20 +15,22 @@ Contato em todas as páginas: **desvape.suporte@gmail.com**.
 
 Abra `index.html` diretamente ou sirva esta pasta com `python3 -m http.server 8000`. Acesse `http://localhost:8000`. Não é necessário instalar pacotes.
 
-- `index.html`: landing page, FAQ nativa e estrutura de screenshots.
+- `index.html`: landing page, demonstração real em vídeo, mascote interativo opcional e FAQ nativa.
 - `privacy.html`, `terms.html`: conteúdo legal original preservado, data e contato atualizados, navegação compartilhada.
 - `support.html`: orientações e contato por e-mail.
 - `styles.css`: identidade visual, responsividade e acessibilidade.
-- `script.js`: ano, entrada sutil dos pilares e montagem opcional das capturas.
-- `assets/README.md`: instruções para adicionar screenshots reais.
+- `script.js`: ano, entrada sutil dos pilares, controles de vídeo e integração sob demanda do mascote.
+- `assets/README.md`: inventário dos assets, processamento do vídeo e detalhes do mascote/fallback.
 
 Header e footer são HTML em cada página para funcionar sem JavaScript. Ao alterar seus links, atualize as quatro páginas.
 
-## Capturas e identidade
+## Mídia e identidade
 
-Não havia screenshots reais disponíveis. A versão inicial usa uma composição tipográfica editorial, sem fingir ser uma tela do app. Veja [como adicionar Home, Progresso e Perfil](assets/README.md). Não há mascote, favicon ou imagem Open Graph provisórios; as tags Open Graph de título, descrição, URL e locale já estão presentes.
+A logo fornecida (`assets/penguin-mark-proposal.svg`) aparece na hero e na navegação de todas as páginas. O vídeo real do app foi otimizado para web, removendo apenas a moldura do simulador; o original permanece intacto. A reprodução usa cerca de 304 KB, com poster de aproximadamente 57 KB. O `<video>` possui autoplay silencioso, loop, reprodução inline e botão de pausa. Movimento reduzido, economia de dados, viewport e visibilidade da aba controlam a reprodução.
 
-Recursos apresentados foram conferidos no README do app (somente leitura). Não houve alteração no repositório do aplicativo. Os textos legais não passaram por revisão jurídica; o conteúdo existente foi mantido como base.
+O pinguim GLB e seu viewer já vieram nos assets. São carregados somente após clicar em “Conhecer o pinguim”, sem som ou animação contínua. A logo permanece como fallback em falhas e no acesso por arquivo local. Para testar o 3D, sirva o site via HTTP. Não é preciso instalar bibliotecas.
+
+Veja [o inventário e as instruções de manutenção](assets/README.md), incluindo os arquivos que foram preservados mas não utilizados. Os recursos e os textos legais existentes foram mantidos; somente o repositório do site foi alterado.
 
 ## GitHub Pages
 
@@ -43,3 +45,10 @@ Os canonical e `og:url` apontam para GitHub Pages, a publicação principal atua
 ## Verificação manual
 
 Confira desktop, tablet e celular; navegação e links legais; FAQ com teclado; foco e link “Pular para o conteúdo”; preferência de movimento reduzido. Os avisos “Em breve na App Store” são botões desabilitados: não simulam um link de download. Sem JS, os textos, links e FAQ continuam utilizáveis.
+
+
+## Testes
+
+`node --test tests/media.test.cjs` valida o comportamento dos controles de mídia, pausas automáticas, carregamento adiado e fallback do mascote sem instalar dependências. Esses testes não substituem a inspeção visual em um navegador com WebGL.
+
+Na atualização com mídia, os arquivos, links e codecs foram verificados. O ambiente de execução bloqueou a abertura do servidor HTTP e do Chrome; portanto, a inspeção visual local de desktop/tablet/mobile e da renderização WebGL permanece pendente. Para fazê-la, execute o servidor acima e confira também movimento reduzido, JavaScript desativado e falha no carregamento do GLB.

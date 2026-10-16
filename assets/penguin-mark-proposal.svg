@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="DesVape — proposta de marca pinguim">
+  <rect width="1024" height="1024" rx="224" fill="#163633"/>
+  <path d="M512 190C338 190 226 320 226 505v173c0 98 87 158 286 158s286-60 286-158V505c0-185-112-315-286-315Z" fill="#8caf9f"/>
+  <path d="M512 410c-33-69-131-88-181-21-36 49-41 104-41 175 0 147 78 221 222 221s222-74 222-221c0-71-5-126-41-175-50-67-148-48-181 21Z" fill="#ede6cf"/>
+  <ellipse cx="408" cy="518" rx="26" ry="35" fill="#163633"/>
+  <ellipse cx="616" cy="518" rx="26" ry="35" fill="#163633"/>
+  <path d="M466 607q46-30 92 0-8 34-46 47-38-13-46-47Z" fill="#dca46b"/>
+</svg>
