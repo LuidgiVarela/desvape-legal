@@ -1,54 +1,44 @@
 # DesVape — site oficial
 
-Landing page estática, páginas legais e suporte. HTML, CSS e JavaScript nativos, sem backend, rastreamento, fontes externas ou etapa de build. O mascote reutiliza o visualizador Three.js fornecido, carregado apenas sob demanda.
+Landing page HTML/CSS/JS, páginas legais e uma lista de espera em Supabase Edge Function e Postgres. Sem framework ou pacote npm para a landing. O visualizador Three.js fornecido para o pinguim carrega sob demanda.
 
-## Páginas públicas
+Páginas públicas:
+- Início: https://luidgivarela.github.io/desvape-legal/
+- Privacidade: https://luidgivarela.github.io/desvape-legal/privacy.html
+- Termos: https://luidgivarela.github.io/desvape-legal/terms.html
+- Suporte: https://luidgivarela.github.io/desvape-legal/support.html
 
-- [Início](https://luidgivarela.github.io/desvape-legal/)
-- [Privacidade](https://luidgivarela.github.io/desvape-legal/privacy.html)
-- [Termos](https://luidgivarela.github.io/desvape-legal/terms.html)
-- [Suporte](https://luidgivarela.github.io/desvape-legal/support.html)
+Contato: desvape.suporte@gmail.com.
 
-Contato em todas as páginas: **desvape.suporte@gmail.com**.
+## Estrutura
 
-## Desenvolvimento
+- index.html: landing page, formulário da lista, vídeo real e FAQ.
+- privacy.html, terms.html e support.html: textos legais e de suporte.
+- styles.css: visual mobile-first, acessibilidade e layout responsivo.
+- script.js: FAQ, vídeo, mascote e validação/interação do formulário.
+- assets/config.js: URL pública da Edge Function; não contém segredos.
+- supabase/functions/waitlist: endpoint público com validação e controles contra spam.
+- supabase/migrations: esquema privado e rate limiter atômico.
+- tests: testes sem dependências para o frontend e endpoint.
 
-Abra `index.html` diretamente ou sirva esta pasta com `python3 -m http.server 8000`. Acesse `http://localhost:8000`. Não é necessário instalar pacotes.
+Para abrir o frontend sem instalar pacotes, execute python3 -m http.server 8000 e acesse http://localhost:8000. A inscrição só grava se a função Supabase estiver configurada e publicada. Em file://, o CORS/WebGL impede chamadas ao backend/mascote.
 
-- `index.html`: landing page, demonstração real em vídeo, mascote interativo opcional e FAQ nativa.
-- `privacy.html`, `terms.html`: conteúdo legal original preservado, data e contato atualizados, navegação compartilhada.
-- `support.html`: orientações e contato por e-mail.
-- `styles.css`: identidade visual, responsividade e acessibilidade.
-- `script.js`: ano, entrada sutil dos pilares, controles de vídeo e integração sob demanda do mascote.
-- `assets/README.md`: inventário dos assets, processamento do vídeo e detalhes do mascote/fallback.
+## Lista de espera
 
-Header e footer são HTML em cada página para funcionar sem JavaScript. Ao alterar seus links, atualize as quatro páginas.
+O formulário usa a Edge Function publicada em `assets/config.js`. Ele só confirma a inscrição depois que a função grava ou reconhece o e-mail no Postgres. A migração já foi aplicada e a função já foi publicada no projeto Supabase `sbuhhrrpobfcnczcrbgl`.
 
-## Mídia e identidade
+A função aceita a origem `https://luidgivarela.github.io`; a resposta CORS de preflight para essa origem foi verificada. Se o site for servido por outro domínio de produção, adicione a origem exata ao secret `WAITLIST_ALLOWED_ORIGINS` no Supabase antes de usá-lo. Não adicione origens de preview público.
 
-A logo fornecida (`assets/penguin-mark-proposal.svg`) aparece na hero e na navegação de todas as páginas. O vídeo real do app foi otimizado para web, removendo apenas a moldura do simulador; o original permanece intacto. A reprodução usa cerca de 304 KB, com poster de aproximadamente 57 KB. O `<video>` possui autoplay silencioso, loop, reprodução inline e botão de pausa. Movimento reduzido, economia de dados, viewport e visibilidade da aba controlam a reprodução.
+A função usa as variáveis padrão `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` no servidor e os secrets `WAITLIST_ALLOWED_ORIGINS` e `WAITLIST_RATE_LIMIT_SECRET`. A chave privilegiada não deve aparecer em `assets/config.js`, HTML ou JavaScript público. O endpoint aplica validação no servidor, consentimento obrigatório, honeypot, tempo mínimo de preenchimento, limite de tentativas por IP, e-mail idempotente e gravação somente dos parâmetros UTM permitidos. O IP bruto não é armazenado na lista; a tabela de rate limit guarda apenas um HMAC diário. RLS nega acesso de `anon` e `authenticated` às tabelas privadas.
 
-O pinguim GLB e seu viewer já vieram nos assets. São carregados somente após clicar em “Conhecer o pinguim”, sem som ou animação contínua. A logo permanece como fallback em falhas e no acesso por arquivo local. Para testar o 3D, sirva o site via HTTP. Não é preciso instalar bibliotecas.
+O Table Editor do Supabase, em `public.desvape_launch_waitlist`, permite consultar os e-mails, a plataforma opcional, os horários e consentimentos, as UTMs filtradas e o domínio de referência. Para cancelar ou excluir uma inscrição, a pessoa pode escrever para `desvape.suporte@gmail.com`; o pedido precisa ser atendido removendo a linha no Dashboard.
 
-Veja [o inventário e as instruções de manutenção](assets/README.md), incluindo os arquivos que foram preservados mas não utilizados. Os recursos e os textos legais existentes foram mantidos; somente o repositório do site foi alterado.
+A infraestrutura ainda não envia e-mails nem oferece confirmação dupla. Até integrar e testar um serviço de envio, os avisos de lançamento e pedidos de exclusão/cancelamento precisam ser processados manualmente. O consentimento informa que o endereço será usado para avisos do lançamento e a Política de Privacidade descreve os dados opcionais de campanha e referência coletados.
 
-## GitHub Pages
+## GitHub Pages e Vercel
 
-Mantenha a origem de publicação atual. Para configuração por branch, use `main` e `/(root)` em Settings → Pages. Todos os caminhos internos são relativos, compatíveis com `/desvape-legal/` e com as URLs `.html` já utilizadas pelo app. Não há roteamento de SPA nem reescrita de URLs.
+GitHub Pages continua servindo as quatro páginas estáticas existentes. As URLs internas são relativas. A função Supabase fica separada do site e serve ao formulário por HTTPS e CORS. Também é possível importar o frontend na Vercel como projeto estático (preset Other, sem build); o frontend usa a mesma Edge Function configurada no assets/config.js. Canonical e og:url continuam apontando para GitHub Pages.
 
-## Vercel
+## Validação
 
-Importe **LuidgiVarela/desvape-legal** com Framework Preset **Other**. Root Directory: raiz do repositório. Sem Install Command, sem Build Command e Output Directory `.` (raiz). Não são necessárias variáveis de ambiente ou `vercel.json`. O site não usa funções de servidor.
-
-Os canonical e `og:url` apontam para GitHub Pages, a publicação principal atual. Se migrar para domínio próprio, atualize esses endereços nas quatro páginas. Importar na Vercel não altera o GitHub Pages.
-
-## Verificação manual
-
-Confira desktop, tablet e celular; navegação e links legais; FAQ com teclado; foco e link “Pular para o conteúdo”; preferência de movimento reduzido. Os avisos “Em breve na App Store” são botões desabilitados: não simulam um link de download. Sem JS, os textos, links e FAQ continuam utilizáveis.
-
-
-## Testes
-
-`node --test tests/media.test.cjs` valida o comportamento dos controles de mídia, pausas automáticas, carregamento adiado e fallback do mascote sem instalar dependências. Esses testes não substituem a inspeção visual em um navegador com WebGL.
-
-Na atualização com mídia, os arquivos, links e codecs foram verificados. O ambiente de execução bloqueou a abertura do servidor HTTP e do Chrome; portanto, a inspeção visual local de desktop/tablet/mobile e da renderização WebGL permanece pendente. Para fazê-la, execute o servidor acima e confira também movimento reduzido, JavaScript desativado e falha no carregamento do GLB.
+Execute `node --test tests/media.test.cjs tests/waitlist.test.cjs` para os testes locais. Eles cobrem interações de mídia, validação, duplicados, rate limit, UTM, CORS e falhas da função. Confira o layout visual no Chrome DevTools responsive, incluindo 320, 375, 390, 430, 768 e 1440 px. O formulário funciona apenas em origens autorizadas no CORS; a inscrição local em `localhost` não é permitida pela configuração de produção.

@@ -1,0 +1,5 @@
+project_id = "desvape-waitlist"
+
+[functions.waitlist]
+# Public registration is validated server-side with origin checks, honeypot and rate limiting.
+verify_jwt = false

@@ -4,18 +4,20 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>
-   DesVape — Um app para te ajudar a largar o vape.
+   Desvape — Lista de espera para uma vida sem vape
   </title>
-  <meta content="Acompanhe seu progresso, atravesse os momentos de vontade e siga no seu ritmo. Conheça o DesVape, um app para te ajudar a largar o vape." name="description"/>
+  <meta content="Entre na lista de espera do Desvape e receba um aviso por e-mail quando o app para largar o vape estiver disponível." name="description"/>
   <meta content="#183e35" name="theme-color"/>
   <link href="https://luidgivarela.github.io/desvape-legal/" rel="canonical"/>
   <meta content="website" property="og:type"/>
   <meta content="pt_BR" property="og:locale"/>
   <meta content="DesVape" property="og:site_name"/>
-  <meta content="DesVape — Um app para te ajudar a largar o vape." property="og:title"/>
-  <meta content="Acompanhe seu progresso, atravesse os momentos de vontade e siga no seu ritmo. Conheça o DesVape, um app para te ajudar a largar o vape." property="og:description"/>
+  <meta content="Desvape — Lista de espera para uma vida sem vape" property="og:title"/>
+  <meta content="Entre na lista de espera do Desvape e receba um aviso por e-mail quando o app para largar o vape estiver disponível." property="og:description"/>
   <meta content="https://luidgivarela.github.io/desvape-legal/" property="og:url"/>
   <link href="styles.css" rel="stylesheet"/>
+  <script defer="" src="assets/config.js">
+  </script>
   <script defer="" src="script.js">
   </script>
   <link href="assets/penguin-mark-proposal.svg" rel="icon" type="image/svg+xml"/>
@@ -52,83 +54,116 @@
    </div>
   </header>
   <main id="conteudo">
-   <section aria-labelledby="hero-title" class="hero container">
+   <section aria-labelledby="hero-title" class="hero container" id="lista-de-espera">
     <div class="hero-copy">
-     <div class="hero-brand">
-      <img alt="Logo do DesVape" height="52" src="assets/penguin-mark-proposal.svg" width="52"/>
-      <div>
-       <span>
-        DesVape
-       </span>
-       <p>
-        Seu ritmo. Seu progresso.
-       </p>
-      </div>
-     </div>
      <h1 id="hero-title">
-      Um app para te ajudar a
-      <span>
-       largar o vape.
-      </span>
+      Sua jornada para uma vida sem vape começa aqui. 🐧
      </h1>
      <p class="hero-description">
-      Acompanhe seu progresso, atravesse os momentos de vontade e siga no seu ritmo, um passo de cada vez.
+      O Desvape está chegando! Entre na lista de espera e seja avisado quando o aplicativo estiver disponível.
      </p>
-     <div class="hero-actions">
-      <button class="button coming-soon" disabled="" type="button">
-       <span aria-hidden="true">
-        ↗
-       </span>
-       Em breve na App Store
-      </button>
-      <a class="text-link" href="#como-funciona">
-       Ver como funciona
-       <span aria-hidden="true">
-        ↓
-       </span>
-      </a>
-     </div>
-     <p class="hero-note">
-      Para adultos que querem parar ou reduzir. Sem pressão.
-     </p>
-    </div>
-    <figure aria-labelledby="demo-caption" class="demo-showcase">
-     <div aria-hidden="true" class="demo-backdrop">
-     </div>
-     <div class="demo-phone">
-      <video aria-describedby="demo-description" aria-label="Demonstração do DesVape: tempo sem vape, apoio nos momentos de vontade e progresso" autoplay="" height="1418" id="app-demo" loop="" muted="" playsinline="" poster="assets/desvape-demo-poster.jpg" preload="metadata" width="648">
-       <source src="assets/desvape-demo.web.mp4" type="video/mp4"/>
-       <p>
-        Seu navegador não reproduz este vídeo.
-        <a href="assets/Desvape_Site_Demo_v1%20(1).mp4">
-         Abra a demonstração do DesVape
+     <form class="waitlist-form" id="waitlist-form" novalidate="">
+      <label class="field-label" for="waitlist-email">
+       Seu melhor e-mail
+      </label>
+      <input aria-describedby="email-error" autocapitalize="none" autocomplete="email" id="waitlist-email" inputmode="email" maxlength="254" name="email" placeholder="voce@exemplo.com" required="" spellcheck="false" type="email"/>
+      <p class="field-error" id="email-error">
+      </p>
+      <fieldset class="platform-options">
+       <legend>
+        Onde você pretende usar o app?
+        <span>
+         (opcional)
+        </span>
+       </legend>
+       <label>
+        <input name="platform" type="radio" value="iOS"/>
+        <span>
+         iOS
+        </span>
+       </label>
+       <label>
+        <input name="platform" type="radio" value="Android"/>
+        <span>
+         Android
+        </span>
+       </label>
+      </fieldset>
+      <label class="consent-option">
+       <input id="waitlist-consent" name="consent" required="" type="checkbox"/>
+       <span>
+        Quero receber um aviso por e-mail sobre o lançamento. Li a
+        <a href="privacy.html" rel="noopener" target="_blank">
+         Política de Privacidade
         </a>
         .
-       </p>
-      </video>
-     </div>
-     <figcaption id="demo-caption">
-      <span>
-       Uma prévia do DesVape
-      </span>
-      <button aria-controls="app-demo" class="media-control" hidden="" id="video-toggle" type="button">
-       Reproduzir vídeo
+       </span>
+      </label>
+      <div aria-hidden="true" class="waitlist-honeypot">
+       <label for="waitlist-company">
+        Deixe este campo vazio
+       </label>
+       <input autocomplete="off" id="waitlist-company" name="company" tabindex="-1" type="text"/>
+      </div>
+      <button class="button waitlist-submit" id="waitlist-submit" type="submit">
+       Quero entrar na lista de espera
       </button>
-     </figcaption>
-     <p class="sr-only" id="demo-description">
-      O vídeo mostra o pinguim na tela inicial, o tempo sem vape, o botão “Estou com vontade agora” e a tela de progresso. Os valores pertencem à demonstração e não representam resultados prometidos.
-     </p>
-     <p class="media-status" id="video-status" role="status">
-     </p>
-     <noscript>
-      <p class="media-status">
-       <a href="assets/desvape-demo.web.mp4">
-        Abrir o vídeo com os controles do navegador
-       </a>
+      <p aria-live="polite" class="waitlist-feedback" id="waitlist-feedback" role="status">
       </p>
-     </noscript>
-    </figure>
+      <p class="consent-note">
+       Seu e-mail será usado para avisos do lançamento. Cancele quando quiser pelo
+       <a href="mailto:desvape.suporte@gmail.com?subject=Cancelar%20lista%20de%20espera">
+        nosso suporte
+       </a>
+       .
+      </p>
+     </form>
+    </div>
    </section>
+   <figure aria-labelledby="demo-caption" class="demo-showcase" id="demonstracao">
+    <div aria-hidden="true" class="demo-backdrop">
+    </div>
+    <div class="demo-phone">
+     <video aria-describedby="demo-description" aria-label="Demonstração do DesVape: tempo sem vape, apoio nos momentos de vontade e progresso" autoplay="" height="1418" id="app-demo" loop="" muted="" playsinline="" poster="assets/desvape-demo-poster.jpg" preload="metadata" width="648">
+      <source src="assets/desvape-demo.web.mp4" type="video/mp4"/>
+      <p>
+       Seu navegador não reproduz este vídeo.
+       <a href="assets/Desvape_Site_Demo_v1%20(1).mp4">
+        Abra a demonstração do DesVape
+       </a>
+       .
+      </p>
+     </video>
+    </div>
+    <figcaption id="demo-caption">
+     <span>
+      Uma prévia do DesVape
+     </span>
+     <button aria-controls="app-demo" class="media-control" hidden="" id="video-toggle" type="button">
+      Reproduzir vídeo
+     </button>
+    </figcaption>
+    <p class="sr-only" id="demo-description">
+     O vídeo mostra o pinguim na tela inicial, o tempo sem vape, o botão “Estou com vontade agora” e a tela de progresso. Os valores pertencem à demonstração e não representam resultados prometidos.
+    </p>
+    <p class="media-status" id="video-status" role="status">
+    </p>
+    <noscript>
+     <p class="media-status">
+      <a href="assets/desvape-demo.web.mp4">
+       Abrir o vídeo com os controles do navegador
+      </a>
+     </p>
+    </noscript>
+   </figure>
+   <div class="post-demo-cta container">
+    <p>
+     Conheça o app por dentro e receba o aviso quando ele chegar.
+    </p>
+    <a class="button button-secondary" href="#lista-de-espera">
+     Entrar na lista de espera
+    </a>
+   </div>
    <section aria-labelledby="how-title" class="section container action-section" id="como-funciona">
     <div class="section-heading">
      <p class="eyebrow">
@@ -143,7 +178,7 @@
     </div>
     <div class="pillars">
      <article class="pillar reveal">
-      <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+      <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24">
        <path d="M4 17V7m0 10h16M8 13l4-5 4 2 4-6">
        </path>
       </svg>
@@ -158,7 +193,7 @@
       </p>
      </article>
      <article class="pillar reveal">
-      <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+      <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24">
        <path d="M8 5v14M16 5v14">
        </path>
       </svg>
@@ -173,7 +208,7 @@
       </p>
      </article>
      <article class="pillar reveal">
-      <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
+      <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24">
        <circle cx="11" cy="11" r="6">
        </circle>
        <path d="m16 16 4 4M8 12l2-3 2 3 2-2">
@@ -267,7 +302,7 @@
    </section>
    <section aria-labelledby="privacy-title" class="section container privacy-section">
     <div aria-hidden="true" class="privacy-visual">
-     <svg fill="none" viewBox="0 0 200 200">
+     <svg fill="none" viewbox="0 0 200 200">
       <circle cx="100" cy="100" r="90">
       </circle>
       <circle cx="100" cy="100" r="68">
@@ -349,7 +384,7 @@
        Quando estará disponível?
       </summary>
       <p>
-       Em breve na App Store. Ainda não há uma data de lançamento anunciada.
+       O Desvape está sendo preparado. Entre na lista de espera para receber um aviso quando houver novidades sobre o lançamento.
       </p>
      </details>
      <details>
@@ -374,12 +409,9 @@
       <p>
        Seu companheiro de jornada já está por aqui. O DesVape está sendo preparado para ajudar você a seguir no seu ritmo.
       </p>
-      <button class="button coming-soon" disabled="" type="button">
-       <span aria-hidden="true">
-        ↗
-       </span>
-       Em breve na App Store
-      </button>
+      <a class="button" href="#lista-de-espera">
+       Quero entrar na lista de espera
+      </a>
      </div>
      <div class="mascot-card" id="mascot-card">
       <div aria-label="Pinguim do DesVape, seu companheiro de jornada" class="mascot-stage" id="mascot-stage" role="img">
@@ -404,6 +436,11 @@
     </div>
    </section>
   </main>
+  <nav aria-label="Cadastro na lista de espera" class="mobile-waitlist-cta" hidden="" id="mobile-waitlist-cta">
+   <a class="button" href="#lista-de-espera">
+    Entrar na lista de espera
+   </a>
+  </nav>
   <footer class="site-footer">
    <div class="container footer-grid">
     <div>

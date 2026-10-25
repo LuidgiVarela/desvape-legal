@@ -827,3 +827,98 @@ details[open] summary::after {
   .hero-actions { gap: 10px 16px; }
   .final-with-mascot { padding: 34px 24px; }
 }
+
+/* Waitlist: keep the first mobile viewport focused on signup. */
+@media (max-width: 600px) {
+  .container { width: calc(100% - 40px); }
+  .nav-wrap { min-height: 60px; padding-block: 8px; }
+  .site-header nav { display: none; }
+  .hero { padding-block: 20px 24px; gap: 0; }
+  .hero-copy { max-width: none; width: 100%; }
+  .hero h1 { font-size: clamp(32px, 8.7vw, 38px); line-height: 1.12; letter-spacing: -.05em; margin-bottom: 12px; }
+  .hero-description { font-size: 16px; line-height: 1.45; margin-bottom: 18px; }
+  .waitlist-form { width: 100%; }
+  .field-label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  #waitlist-email { display: block; width: 100%; min-height: 54px; padding: 0 16px; border: 1px solid #9daea1; border-radius: 12px; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+  #waitlist-email::placeholder { color: #68786d; opacity: 1; }
+  #waitlist-email:focus-visible { border-color: var(--green); outline: 3px solid #54726655; outline-offset: 2px; }
+  .field-error { min-height: 0; font-size: 13px; color: #963d36; margin: 0; }
+  .field-error:not(:empty) { margin-top: 5px; }
+  .platform-options { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0; padding: 0; border: 0; }
+  .platform-options legend { width: 100%; padding: 0; font-size: 13px; font-weight: 550; }
+  .platform-options legend span { color: var(--muted); font-weight: 400; }
+  .platform-options label { position: relative; display: inline-flex; align-items: center; min-height: 40px; }
+  .platform-options input { position: absolute; opacity: 0; inset: 0; }
+  .platform-options label > span { display: grid; min-width: 72px; min-height: 40px; place-items: center; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; }
+  .platform-options input:checked + span { border-color: var(--green); background: var(--sage); font-weight: 650; }
+  .platform-options input:focus-visible + span { outline: 3px solid #54726655; outline-offset: 2px; }
+  .consent-option { display: flex; align-items: flex-start; gap: 10px; min-height: 44px; margin: 10px 0; font-size: 13px; line-height: 1.45; }
+  .consent-option input { width: 20px; height: 20px; flex: 0 0 20px; margin: 1px 0 0; accent-color: var(--green); }
+  .consent-option a, .consent-note a { color: var(--green); font-weight: 600; }
+  .waitlist-submit { width: 100%; min-height: 58px; border-radius: 13px; padding-inline: 14px; font-size: 15px; line-height: 1.3; }
+  .waitlist-submit:disabled { opacity: .75; }
+  .waitlist-feedback { display: none; margin: 8px 0 0; padding: 10px 12px; border-radius: 10px; background: var(--sage); color: var(--green); font-size: 14px; line-height: 1.4; }
+  .waitlist-feedback.is-visible { display: block; }
+  .waitlist-feedback.is-error { color: #80332d; background: #f8e9e4; }
+  .consent-note { font-size: 13px; line-height: 1.4; margin: 9px 0 0; }
+  .waitlist-honeypot { position: absolute!important; left: -10000px!important; width: 1px!important; height: 1px!important; overflow: hidden!important; }
+  .hero .coming-soon { display: none; }
+  .post-demo-cta { text-align: center; padding-block: 18px 8px; }
+  .post-demo-cta p { font-size: 15px; margin-bottom: 6px; }
+  .post-demo-cta .button { min-height: 50px; }
+  .mobile-waitlist-cta { display: none; }
+  .mobile-waitlist-cta.is-visible { position: fixed; z-index: 20; inset: auto 0 0; display: block; padding: 10px 20px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--cream); }
+  .mobile-waitlist-cta .button { width: 100%; min-height: 54px; justify-content: center; font-size: 15px; box-shadow: 0 5px 18px #183e3518; }
+  body.mobile-cta-visible main { padding-bottom: calc(78px + env(safe-area-inset-bottom)); }
+}
+@media (min-width: 601px) {
+  .waitlist-form { max-width: 540px; padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: #fff; box-shadow: 0 12px 34px #1636330b; }
+  .field-label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+  #waitlist-email { width: 100%; min-height: 54px; padding: 0 16px; border: 1px solid #9daea1; border-radius: 12px; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+  #waitlist-email:focus-visible { outline: 3px solid #54726655; outline-offset: 2px; }
+  .field-error { min-height: 0; margin: 0; color: #963d36; font-size: 13px; }
+  .field-error:not(:empty) { margin-top: 5px; }
+  .platform-options { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; padding: 0; border: 0; }
+  .platform-options legend { width: 100%; padding: 0 0 4px; font-size: 13px; font-weight: 550; }
+  .platform-options legend span { color: var(--muted); font-weight: 400; }
+  .platform-options label { position: relative; display: inline-flex; align-items: center; min-height: 42px; }
+  .platform-options input { position: absolute; opacity: 0; inset: 0; }
+  .platform-options label > span { display: grid; min-width: 82px; min-height: 42px; place-items: center; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; }
+  .platform-options input:checked + span { border-color: var(--green); background: var(--sage); font-weight: 650; }
+  .platform-options input:focus-visible + span { outline: 3px solid #54726655; outline-offset: 2px; }
+  .consent-option { display: flex; gap: 10px; align-items: flex-start; min-height: 44px; margin: 16px 0; font-size: 14px; line-height: 1.5; }
+  .consent-option input { width: 20px; height: 20px; flex: 0 0 20px; margin: 2px 0 0; accent-color: var(--green); }
+  .consent-option a, .consent-note a { color: var(--green); font-weight: 600; }
+  .waitlist-submit { width: 100%; min-height: 58px; justify-content: center; font-size: 16px; }
+  .waitlist-submit:disabled { opacity: .75; }
+  .waitlist-feedback { display: none; margin: 10px 0 0; padding: 12px; border-radius: 10px; background: var(--sage); color: var(--green); font-size: 14px; }
+  .waitlist-feedback.is-visible { display: block; }
+  .waitlist-feedback.is-error { color: #80332d; background: #f8e9e4; }
+  .consent-note { font-size: 12px; line-height: 1.45; margin: 10px 0 0; }
+  .waitlist-honeypot { position: absolute!important; left: -10000px!important; width: 1px!important; height: 1px!important; overflow: hidden!important; }
+}
+
+/* The waitlist, not decorative media, is the desktop and mobile hero. */
+.hero {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  padding-block: 32px 38px;
+}
+.hero-copy {
+  width: min(100%, 680px);
+  margin-inline: auto;
+}
+.demo-showcase {
+  width: min(440px, calc(100% - 40px));
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  .hero { padding-block: 16px 22px; }
+  .hero-copy { width: 100%; }
+  .hero h1 { margin-bottom: 10px; }
+  .hero-description { margin-bottom: 14px; }
+  .site-header .container { width: calc(100% - 36px); }
+  .nav-wrap { min-height: 0; padding-block: 8px; }
+  .waitlist-form { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+  .demo-showcase { width: min(430px, calc(100% - 40px)); }
+}
