@@ -1,0 +1,26 @@
+name: Supabase Health Check
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Supabase availability
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        run: |
+          if [ -z "$SUPABASE_URL" ]; then
+            echo "SUPABASE_URL não configurada"
+            exit 1
+          fi
+
+          curl --fail --silent --show-error \
+            --max-time 30 \
+            "$SUPABASE_URL/auth/v1/health"
