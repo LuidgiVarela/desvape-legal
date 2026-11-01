@@ -13,7 +13,7 @@ jobs:
   health-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Supabase availability
+      - name: Check Supabase REST API
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -26,6 +26,6 @@ jobs:
           curl --fail --silent --show-error \
             --max-time 30 \
             -H "apikey: $SUPABASE_KEY" \
-            "$SUPABASE_URL/auth/v1/settings"
+            "$SUPABASE_URL/rest/v1/"
 
-          echo "Supabase respondeu com sucesso!"
+          echo "Supabase REST API funcionando!"
